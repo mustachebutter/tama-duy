@@ -49,6 +49,8 @@ const transform = withPlugins([
     'expo-linking',
     'expo-constants',
     'expo-modules-core',
+    'expo-gl',
+    'expo-three',
     '@my/config',
   ]),
   withTamagui({
