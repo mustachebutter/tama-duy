@@ -8,6 +8,10 @@ export function HomeScreen() {
     href: '/user/nate',
   })
 
+  const sceneLinkProps = useLink({
+    href: '/3d'
+  })
+
   return (
     <YStack f={1} jc="center" ai="center" p="$4" space>
       <YStack space="$4" maw={600}>
@@ -31,9 +35,10 @@ export function HomeScreen() {
         </Paragraph>
       </YStack>
 
-      <XStack>
+      <YStack>
         <Button {...linkProps}>Link to user</Button>
-      </XStack>
+        <Button {...sceneLinkProps}>Link to 3D Scene</Button>
+      </YStack>
 
       <SheetDemo />
     </YStack>

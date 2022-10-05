@@ -17,6 +17,7 @@ export function NavigationProvider({
             screens: {
               home: '',
               'user-detail': 'user/:id',
+              '3d-scene': '3d',
             },
           },
         }),

@@ -3,12 +3,14 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 
 import { HomeScreen } from '../../features/home/screen'
 import { UserDetailScreen } from '../../features/user/detail-screen'
+import { MainScene } from 'app/features/3d/scene'
 
 const Stack = createNativeStackNavigator<{
   home: undefined
   'user-detail': {
     id: string
   }
+  '3d-scene': undefined
 }>()
 
 export function NativeNavigation() {
@@ -26,6 +28,13 @@ export function NativeNavigation() {
         component={UserDetailScreen}
         options={{
           title: 'User',
+        }}
+      />
+      <Stack.Screen
+        name="3d-scene"
+        component={MainScene}
+        options={{
+          title: '3D Main Scene'
         }}
       />
     </Stack.Navigator>
