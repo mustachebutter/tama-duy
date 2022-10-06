@@ -18,6 +18,7 @@ export function NavigationProvider({
               home: '',
               'user-detail': 'user/:id',
               '3d-scene': '3d',
+              'fiber-scene': 'fiber',
             },
           },
         }),

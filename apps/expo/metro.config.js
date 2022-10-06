@@ -16,4 +16,7 @@ config.resolver.nodeModulesPaths = [
   path.resolve(workspaceRoot, 'node_modules'),
 ]
 
+config.resolver.sourceExts = ['js', 'jsx', 'json', 'ts', 'tsx', 'cjs']
+config.resolver.assetExts = ['glb', 'gltf', 'png', 'jpg', 'otf']
+
 module.exports = config

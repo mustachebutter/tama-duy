@@ -4,6 +4,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { HomeScreen } from '../../features/home/screen'
 import { UserDetailScreen } from '../../features/user/detail-screen'
 import { MainScene } from 'app/features/3d/scene'
+import { FiberScene } from 'app/features/3d/fiber-scene'
 
 const Stack = createNativeStackNavigator<{
   home: undefined
@@ -11,6 +12,7 @@ const Stack = createNativeStackNavigator<{
     id: string
   }
   '3d-scene': undefined
+  'fiber-scene': undefined
 }>()
 
 export function NativeNavigation() {
@@ -35,6 +37,13 @@ export function NativeNavigation() {
         component={MainScene}
         options={{
           title: '3D Main Scene'
+        }}
+      />
+      <Stack.Screen
+        name="fiber-scene"
+        component={FiberScene}
+        options={{
+          title: 'React Three Fiber Scene'
         }}
       />
     </Stack.Navigator>

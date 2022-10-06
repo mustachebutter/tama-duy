@@ -12,34 +12,39 @@ export function HomeScreen() {
     href: '/3d'
   })
 
+  const fiberSceneLinkProps = useLink({
+    href: '/fiber'
+  })
+
   return (
     <YStack f={1} jc="center" ai="center" p="$4" space>
       <YStack space="$4" maw={600}>
-        <H1 ta="center">Welcome to Tamagui.</H1>
+        <H1 ta="center">Welcome to Tama-DUY (TamaGUI).</H1>
         <Paragraph ta="center">
-          Here's a basic starter to show navigating from one screen to another. This screen uses the
-          same code on Next.js and React Native.
+          This is the main navigation hub for all the screens in this app! Click any of the buttons below to begin.
         </Paragraph>
 
         <Separator />
-        <Paragraph ta="center">
-          Tamagui is made by{' '}
-          <Anchor href="https://twitter.com/natebirdman" target="_blank">
-            Nate Wienert
-          </Anchor>
-          , give it a star{' '}
-          <Anchor href="https://github.com/tamagui/tamagui" target="_blank" rel="noreferrer">
-            on Github
-          </Anchor>
-          .
-        </Paragraph>
       </YStack>
 
       <YStack>
-        <Button {...linkProps}>Link to user</Button>
-        <Button {...sceneLinkProps}>Link to 3D Scene</Button>
+        <Button {...linkProps}>User</Button>
+        <Button {...sceneLinkProps}>Expo-Three</Button>
+        <Button {...fiberSceneLinkProps}>React-Three-Fiber</Button>
       </YStack>
 
+
+      <Paragraph ta="center">
+        Check out
+        {' '}
+        <Anchor href="https://github.com/tamagui/tamagui" target="_blank" rel="noreferrer">
+          TamaGUI
+        </Anchor>
+        {' and '}
+        <Anchor href="https://github.com/mustachebutter/tama-duy" target="_blank" rel="noreferrer">
+          this app.
+        </Anchor>
+      </Paragraph>
       <SheetDemo />
     </YStack>
   )
