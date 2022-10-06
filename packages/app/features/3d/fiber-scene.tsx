@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import { useFrame, Canvas } from "@react-three/fiber/native"
+import { useFrame, Canvas } from "@react-three/fiber"
 
 function Box(props) {
     const mesh = useRef(null)
