@@ -5508,6 +5508,8 @@ __metadata:
     "@tamagui/shorthands": 1.0.1-beta.190
     "@tamagui/theme-base": 1.0.1-beta.190
     "@types/three": ^0.144.0
+    base64-arraybuffer: ^1.0.2
+    expo-device: ^4.3.0
     expo-gl: ^11.4.0
     expo-linking: ^3.2.2
     expo-three: ^6.2.0
@@ -6024,6 +6026,13 @@ __metadata:
   version: 1.0.2
   resolution: "balanced-match@npm:1.0.2"
   checksum: 9706c088a283058a8a99e0bf91b0a2f75497f185980d9ffa8b304de1d9e58ebda7c72c07ebf01dadedaac5b2907b2c6f566f660d62bd336c3468e960403b9d65
+  languageName: node
+  linkType: hard
+
+"base64-arraybuffer@npm:^1.0.2":
+  version: 1.0.2
+  resolution: "base64-arraybuffer@npm:1.0.2"
+  checksum: 15e6400d2d028bf18be4ed97702b11418f8f8779fb8c743251c863b726638d52f69571d4cc1843224da7838abef0949c670bde46936663c45ad078e89fee5c62
   languageName: node
   linkType: hard
 
@@ -9610,6 +9619,17 @@ __metadata:
   peerDependencies:
     expo: "*"
   checksum: 11085b10f7a912f950919ea89706afb0355b44f04e1c653b42af16fd6f34fa783778f9d929390d824584986c8db15083c07bf5378fbf1f5d6ce7f052588536c9
+  languageName: node
+  linkType: hard
+
+"expo-device@npm:^4.3.0":
+  version: 4.3.0
+  resolution: "expo-device@npm:4.3.0"
+  dependencies:
+    ua-parser-js: ^0.7.19
+  peerDependencies:
+    expo: "*"
+  checksum: a92536c4177d39f7d4c0e5755fcbc6316ddd3ab39a415f9f711d9ed798e682c61812d6716cece88b022ea60306b011ea637448a65d47e2bacf9c52c5e71c7e5f
   languageName: node
   linkType: hard
 
@@ -19495,7 +19515,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ua-parser-js@npm:^0.7.30":
+"ua-parser-js@npm:^0.7.19, ua-parser-js@npm:^0.7.30":
   version: 0.7.31
   resolution: "ua-parser-js@npm:0.7.31"
   checksum: e2f8324a83d1715601576af85b2b6c03890699aaa7272950fc77ea925c70c5e4f75060ae147dc92124e49f7f0e3d6dd2b0a91e7f40d267e92df8894be967ba8b

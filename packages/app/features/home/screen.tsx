@@ -1,39 +1,24 @@
 import { Anchor, Button, H1, Paragraph, Separator, Sheet, XStack, YStack } from '@my/ui'
+import { Slider } from 'tamagui'
 import { ChevronDown, ChevronUp } from '@tamagui/feather-icons'
 import React, { useState } from 'react'
 import { useLink } from 'solito/link'
+import * as Device from 'expo-device'
+import { Header } from '../components/home/header'
 
 export function HomeScreen() {
-  const linkProps = useLink({
-    href: '/user/nate',
-  })
-
-  const sceneLinkProps = useLink({
-    href: '/3d'
-  })
-
-  const fiberSceneLinkProps = useLink({
-    href: '/fiber'
-  })
+  const isWeb = Device.osBuildId ? false : true
 
   return (
     <YStack f={1} jc="center" ai="center" p="$4" space>
+      <Header />
       <YStack space="$4" maw={600}>
         <H1 ta="center">Welcome to Tama-DUY (TamaGUI).</H1>
         <Paragraph ta="center">
-          This is the main navigation hub for all the screens in this app! Click any of the buttons below to begin.
+          This is the main navigation hub for all the screens in this app! Click any of the buttons from above to start.
         </Paragraph>
-
         <Separator />
       </YStack>
-
-      <YStack>
-        <Button {...linkProps}>User</Button>
-        <Button {...sceneLinkProps}>Expo-Three</Button>
-        <Button {...fiberSceneLinkProps}>React-Three-Fiber</Button>
-      </YStack>
-
-
       <Paragraph ta="center">
         Check out
         {' '}
