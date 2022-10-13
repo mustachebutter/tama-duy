@@ -1,32 +1,45 @@
-import React, { useRef, useState } from "react";
+import React, { Suspense, useRef, useState } from "react";
 import { useFrame, Canvas } from "@react-three/fiber"
-
-function Box(props) {
-    const mesh = useRef(null)
-    const [hovered, setHover] = useState(false)
-    const [active, setActive] = useState(false)
-    useFrame((state, delta) => (mesh.current.rotation.x += 0.01))
-    return (
-      <mesh
-        {...props}
-        ref={mesh}
-        scale={active ? 1.5 : 1}
-        onClick={(event) => setActive(!active)}
-        onPointerOver={(event) => setHover(true)}
-        onPointerOut={(event) => setHover(false)}>
-        <boxGeometry args={[1, 1, 1]} />
-        <meshStandardMaterial color={hovered ? 'hotpink' : 'orange'} />
-      </mesh>
-    )
-  }
+import { Backpack } from "../components/3d/backpack"
+import { Image } from "tamagui";
+import { View, Dimensions } from "react-native";
+import { Button, Select, Slider, YGroup, YStack } from "@my/ui";
+import { Loader } from "../components/loader";
+import { KeyboardControls, OrbitControls } from "@react-three/drei";
   
-  export const FiberScene = () => {
-    return (
-      <Canvas>
-        <ambientLight />
-        <pointLight position={[10, 10, 10]} />
-        <Box position={[-1.2, 0, 0]} />
-        <Box position={[1.2, 0, 0]} />
-      </Canvas>
-    )
-  }
+export const FiberScene = () => {
+  const windowHeight = Dimensions.get('window').height
+  const windowWidth = Dimensions.get('window').width
+  console.log(windowWidth, windowHeight)
+  const [shouldSpin, setShouldSpin] = useState(false)
+
+  return (
+    <YStack f={1} jc={'center'} ai={'center'} p={'$4'} fullscreen >
+      <View style={{ position: 'absolute' }}>
+        <Image src={'https://d3ahhox6lmapdc.cloudfront.net/images/ffviir-zoom-park.jpg'} width={1920} height={1080} />
+      </View>
+      <View style={{ width: 1920, height: 1080 }}>
+        <Canvas>
+          <Suspense fallback={<Loader />}>
+            <ambientLight color={0x003300} intensity={10}/>
+            <Backpack shouldSpin={shouldSpin}/>
+          </Suspense>
+        </Canvas>
+      </View>
+      <View style={{ position: 'absolute', top: 0, right: 0 }}>
+        <YStack pt={'$4'} pr={'$4'}>
+          <Button  onClick={() => setShouldSpin(!shouldSpin)}>Spin the model!!!</Button>
+          <Button  onClick={() => setShouldSpin(!shouldSpin)}>Spin the model!!!</Button>
+        </YStack>
+      </View>
+    </YStack>
+  )
+}
+
+export const ColorSelector = () => {
+  return (
+      <Select>
+          
+      </Select>
+  )
+}
