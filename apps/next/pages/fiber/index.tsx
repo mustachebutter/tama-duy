@@ -1,3 +1,3 @@
-import { FiberScene } from 'app/features/3d/fiber-scene'
+import { FiberScreen } from 'app/features/3d/fiber-screen'
 
-export default FiberScene
+export default FiberScreen

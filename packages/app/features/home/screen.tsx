@@ -7,7 +7,6 @@ import * as Device from 'expo-device'
 import { Header } from '../components/home/header'
 
 export function HomeScreen() {
-  const isWeb = Device.osBuildId ? false : true
 
   return (
     <YStack f={1} jc="center" ai="center" p="$4" space>

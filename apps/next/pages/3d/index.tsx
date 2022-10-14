@@ -1,3 +1,3 @@
-import { MainScene } from 'app/features/3d/scene'
+import { MainScreen } from 'app/features/3d/screen'
 
-export default MainScene
+export default MainScreen

@@ -51,8 +51,22 @@ const transform = withPlugins([
     'expo-modules-core',
     'expo-gl',
     'expo-three',
+    'expo-asset',
+    'expo-file-system',
+    'expo-device',
+    '@expo/browser-polyfill',
     '@my/config',
-  ]),
+  ])({
+    webpack(config, options) {
+      config.module.rules.push({
+        test: /\.(glb|gltf|obj|mtl|fbx|xpng|xjpg|xjpeg)$/,
+        use: {
+          loader: "file-loader",
+        },
+      });
+      return config;
+    }
+  }),
   withTamagui({
     config: './tamagui.config.ts',
     components: ['tamagui', '@my/ui'],

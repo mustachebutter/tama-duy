@@ -7,7 +7,7 @@ import { Button, Select, Slider, YGroup, YStack } from "@my/ui";
 import { Loader } from "../components/loader";
 import { KeyboardControls, OrbitControls } from "@react-three/drei";
   
-export const FiberScene = () => {
+export const FiberScreen = () => {
   const windowHeight = Dimensions.get('window').height
   const windowWidth = Dimensions.get('window').width
   console.log(windowWidth, windowHeight)
@@ -29,17 +29,29 @@ export const FiberScene = () => {
       <View style={{ position: 'absolute', top: 0, right: 0 }}>
         <YStack pt={'$4'} pr={'$4'}>
           <Button  onClick={() => setShouldSpin(!shouldSpin)}>Spin the model!!!</Button>
-          <Button  onClick={() => setShouldSpin(!shouldSpin)}>Spin the model!!!</Button>
+          <AmbientColorSelector />
+          <ScaleSlider />
         </YStack>
       </View>
     </YStack>
   )
 }
 
-export const ColorSelector = () => {
+export const AmbientColorSelector = () => {
   return (
       <Select>
           
       </Select>
+  )
+}
+
+export const ScaleSlider = () => {
+  return(
+    <Slider defaultValue={[50]} max={100} step={1} >
+      <Slider.Track>
+        <Slider.TrackActive />
+      </Slider.Track>
+      <Slider.Thumb bordered circular elevate index={0} />
+    </Slider>
   )
 }
