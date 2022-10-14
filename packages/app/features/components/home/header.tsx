@@ -35,7 +35,7 @@ export const Header = () => {
     )
 }
 
-const NavBarButton = ({ children, disabled = false, ...linkProps }) => {
+export const NavBarButton = ({ children, disabled = false, ...linkProps }) => {
   return (
     <Button 
       bc={'$yellow9'}

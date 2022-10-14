@@ -5,7 +5,6 @@ import { Image } from "tamagui";
 import { View, Dimensions } from "react-native";
 import { Button, Select, Slider, YGroup, YStack } from "@my/ui";
 import { Loader } from "../components/loader";
-import { KeyboardControls, OrbitControls } from "@react-three/drei";
   
 export const FiberScreen = () => {
   const windowHeight = Dimensions.get('window').height
@@ -15,24 +14,22 @@ export const FiberScreen = () => {
 
   return (
     <YStack f={1} jc={'center'} ai={'center'} p={'$4'} fullscreen >
-      <View style={{ position: 'absolute' }}>
+      <YStack pos={'absolute'} zIndex={-1000}>
         <Image src={'https://d3ahhox6lmapdc.cloudfront.net/images/ffviir-zoom-park.jpg'} width={1920} height={1080} />
-      </View>
-      <View style={{ width: 1920, height: 1080 }}>
-        <Canvas>
-          <Suspense fallback={<Loader />}>
-            <ambientLight color={0x003300} intensity={10}/>
-            <Backpack shouldSpin={shouldSpin}/>
-          </Suspense>
-        </Canvas>
-      </View>
-      <View style={{ position: 'absolute', top: 0, right: 0 }}>
-        <YStack pt={'$4'} pr={'$4'}>
+      </YStack>
+        <YStack width={1920} height={1080}>
+          <Canvas>
+            <Suspense fallback={<Loader />}>
+              <ambientLight color={0x003300} intensity={10}/>
+              <Backpack shouldSpin={shouldSpin}/>
+            </Suspense>
+          </Canvas>
+        </YStack>
+        <YStack pos={'absolute'} t={'$0'} r={'$0'} pt={'$4'} pr={'$4'}>
           <Button  onClick={() => setShouldSpin(!shouldSpin)}>Spin the model!!!</Button>
           <AmbientColorSelector />
           <ScaleSlider />
         </YStack>
-      </View>
     </YStack>
   )
 }
