@@ -8,12 +8,16 @@ export const Header = () => {
         href: '/user/nate',
       })
     
-      const sceneLinkProps = useLink({
+      const screenLinkProps = useLink({
         href: '/3d'
       })
     
-      const fiberSceneLinkProps = useLink({
+      const fiberScreenLinkProps = useLink({
         href: '/fiber'
+      })
+
+      const blogsScreenLinkProps = useLink({
+        href: '/blogs'
       })
 
       const isWeb = Platform.OS === 'web'
@@ -23,10 +27,10 @@ export const Header = () => {
             <NavBarButton {...linkProps}>User</NavBarButton>
             {
                 isWeb 
-                ? (<NavBarButton {...fiberSceneLinkProps}>React-Three-Fiber</NavBarButton>)
-                : (<NavBarButton {...sceneLinkProps}>Expo-Three</NavBarButton>)
+                ? (<NavBarButton {...fiberScreenLinkProps}>React-Three-Fiber</NavBarButton>)
+                : (<NavBarButton {...screenLinkProps}>Expo-Three</NavBarButton>)
             }
-            <NavBarButton disabled>Blogs</NavBarButton>
+            <NavBarButton {...blogsScreenLinkProps}>Blogs</NavBarButton>
         </XStack>
     )
 }

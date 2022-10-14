@@ -3,16 +3,22 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 
 import { HomeScreen } from '../../features/home/screen'
 import { UserDetailScreen } from '../../features/user/detail-screen'
-import { MainScene } from 'app/features/3d/scene'
-import { FiberScene } from 'app/features/3d/fiber-scene'
+import { MainScreen } from 'app/features/3d/screen'
+import { FiberScreen } from 'app/features/3d/fiber-screen'
+import BlogsScreen from '../../../../apps/next/pages/blogs'
+import { BlogDetailScreen } from 'app/features/blogs/detail-screen'
 
 const Stack = createNativeStackNavigator<{
   home: undefined
   'user-detail': {
     id: string
   }
-  '3d-scene': undefined
-  'fiber-scene': undefined
+  '3d-screen': undefined
+  'fiber-screen': undefined
+  'blogs': undefined
+  'blog-detail': {
+    id: string
+  }
 }>()
 
 export function NativeNavigation() {
@@ -33,19 +39,34 @@ export function NativeNavigation() {
         }}
       />
       <Stack.Screen
-        name="3d-scene"
-        component={MainScene}
+        name="3d-screen"
+        component={MainScreen}
         options={{
-          title: '3D Main Scene'
+          title: '3D Main Screen'
         }}
       />
       <Stack.Screen
-        name="fiber-scene"
-        component={FiberScene}
+        name="fiber-screen"
+        component={FiberScreen}
         options={{
-          title: 'React Three Fiber Scene'
+          title: 'React Three Fiber Screen'
         }}
       />
+      <Stack.Screen
+        name="blogs"
+        component={BlogsScreen}
+        options={{
+          title: 'Blogs'
+        }}
+      />
+      <Stack.Screen
+        name="blog-detail"
+        component={BlogDetailScreen}
+        options={{
+          title: 'Blog'
+        }}
+      />
+
     </Stack.Navigator>
   )
 }
