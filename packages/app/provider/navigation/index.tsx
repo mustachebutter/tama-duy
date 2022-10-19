@@ -21,6 +21,7 @@ export function NavigationProvider({
               'fiber-screen': 'fiber',
               'blogs': 'blogs',
               'blog-detail': 'blogs/:id',
+              'forms': 'forms'
             },
           },
         }),

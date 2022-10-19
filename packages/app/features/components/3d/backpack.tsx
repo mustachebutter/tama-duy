@@ -8,7 +8,7 @@ const domain = 'https://d3ahhox6lmapdc.cloudfront.net/models/backpack'
 type ModelProps = {
     shouldSpin: boolean
 }
-export const Backpack = ({ shouldSpin = false }: ModelProps) => {
+export const Backpack = ({ shouldSpin = false, scale = [0, 0, 0] }: ModelProps) => {
     const mesh = useRef(null)
 
     const fbx = useFBX(`${domain}/low_poly_bag_2.fbx`)
@@ -30,12 +30,10 @@ export const Backpack = ({ shouldSpin = false }: ModelProps) => {
         shouldSpin && (mesh.current.rotation.y += 0.01)
     })
 
-    console.log(fbx);
-
     return (
         <Suspense fallback={<Loader />}>
             <ambientLight />
-            <mesh position={[0, 0, -900]} scale={[1, 1, 1]}>
+            <mesh position={[0, 0, -900]} scale={scale}>
                 <primitive ref={mesh} object={fbx} />
             </mesh>
         </Suspense>

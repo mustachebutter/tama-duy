@@ -7,6 +7,7 @@ import { MainScreen } from 'app/features/3d/screen'
 import { FiberScreen } from 'app/features/3d/fiber-screen'
 import BlogsScreen from '../../../../apps/next/pages/blogs'
 import { BlogDetailScreen } from 'app/features/blogs/detail-screen'
+import { FormScreen } from 'app/features/forms/screen'
 
 const Stack = createNativeStackNavigator<{
   home: undefined
@@ -19,6 +20,7 @@ const Stack = createNativeStackNavigator<{
   'blog-detail': {
     id: string
   }
+  'forms': undefined
 }>()
 
 export function NativeNavigation() {
@@ -64,6 +66,13 @@ export function NativeNavigation() {
         component={BlogDetailScreen}
         options={{
           title: 'Blog'
+        }}
+      />
+      <Stack.Screen
+        name="forms"
+        component={FormScreen}
+        options={{
+          title: 'Forms'
         }}
       />
 
