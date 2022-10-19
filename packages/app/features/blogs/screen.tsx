@@ -1,35 +1,44 @@
-import { Avatar, Button, Card, H1, H2, Paragraph, ScrollView, Text, XGroup, XStack, YStack } from "@my/ui"
+import { Avatar, Button, Card, H1, H2, Label, Paragraph, Popover, ScrollView, XStack, YStack } from "@my/ui"
 import { Image, Spinner } from "tamagui";
-import { Book, ChevronLeft, ChevronRight, MessageSquare } from "@tamagui/feather-icons"
-import React, { useState } from "react"
+import { Book, ChevronLeft, ChevronRight, MessageSquare, Share2 } from "@tamagui/feather-icons"
+import React, { useEffect, useRef, useState } from "react"
 import { usePosts } from "../hooks/usePosts"
 import { backgroundIndex } from "../constants/background-index";
 import { useLink } from "solito/link";
-import { NavBarButton } from "../components/home/header";
 
 export const BlogsScreen = () => {
+    const scrollRef = useRef()
     const [page, setPage] = useState(1)
     const limit = 5
-
-    const [postLinkProps, setPostLinkProps] = useState(null)
     
     const data = usePosts(page, limit)
+    const shouldDisablePrevBtn = page <= 1
+    const shouldDisableNextBtn = data?.length != limit
 
     const handleNext = () => {
-        data.length == limit && setPage(page + 1)
+        setPage(page + 1)
+        scrollToTop()    
     }
 
     const handlePrev = () => {
-        page > 1 && setPage(page - 1)
+        setPage(page - 1)
+        scrollToTop()    
+    }
+
+    const scrollToTop = () => {
+        scrollRef.current?.scrollTo({
+            y: 0,
+            animated: true
+        })
     }
 
     return (
-        <ScrollView>
+        <ScrollView ref={scrollRef}>
             <YStack m={'$4'}>
                 <H1><Book /> Blogs</H1>
                 {
                     data ? data.map((post, i) => (
-                        <XStack m={'$4'}>
+                        <XStack m={'$4'} alignItems={'flex-end'}>
                             <Card key={i} size={'$4'} elevate bordered f={1}>
                                 <Card.Header padded>
                                     <H2>{post.title}</H2>
@@ -58,8 +67,6 @@ export const BlogsScreen = () => {
                                     <XStack>
                                         <Paragraph pr={'$2'}>{`${post.comments.length} `}</Paragraph>
                                         <MessageSquare />
-                                        {/* <DetailButton id={post.id}/> */}
-                                        {/* <NavBarButton /> */}
                                     </XStack>
                                     {/* Share functionality */}
                                 </Card.Footer>
@@ -77,14 +84,17 @@ export const BlogsScreen = () => {
                         miw={'$12'}
                         icon={ChevronLeft}
                         onClick={handlePrev}
+                        disabled={shouldDisablePrevBtn}
                     >
                         Previous
                     </Button>
+                    <Paragraph>- {page} -</Paragraph>
                     <Button 
                         miw={'$12'}
                         iconAfter={ChevronRight}
                         onClick={handleNext}
                         alignSelf={'flex-end'}
+                        disabled={shouldDisableNextBtn}
                     >
                         Next
                     </Button>
@@ -100,21 +110,69 @@ const DetailButton = ({ id }) => {
     })
 
     return (
-        <Button
+        <XStack
             pos={'absolute'}
             zIndex={100}
-            right={'$5'}
-            mt={'$5'}
-            mr={'$5'}
-            bc={'yellow'} 
-            color={'black'}
-            iconAfter={<ChevronRight color={'black'}/>} 
-            hoverStyle={{
-                bc: '$yellow9'
+            right={'$2'}
+            pb={'$4'}
+            mr={'$1'}
+            $gtSm={{
+                right: '$5',
+                marginRight: '$5',
             }}
-            {...linkProps}
+            space={'$2'}
         >
-            Read More
-        </Button>
+            <ShareButton />
+            <Button
+                bc={'yellow'} 
+                color={'black'}
+                iconAfter={<ChevronRight color={'black'}/>} 
+                hoverStyle={{
+                    bc: '$yellow9'
+                }}
+                {...linkProps}
+            >
+                Read More
+            </Button>
+        </XStack>
+    )
+}
+
+const ShareButton = () => {
+    return (
+        <Popover sheetBreakpoint={'lg'} placement={'left'}>
+            <Popover.Trigger asChild>
+                <Button icon={Share2}/>
+            </Popover.Trigger>
+
+            <Popover.Sheet modal dismissOnSnapToBottom>
+                <Popover.Sheet.Overlay />
+                <Popover.Sheet.Frame padding={'$4'}>
+                    <Popover.SheetContents />
+                </Popover.Sheet.Frame>
+            </Popover.Sheet>
+
+            <Popover.Content
+                bw={1}
+                boc={'$borderColor'}
+                enterStyle={{ x:0, y: -10, o: 0 }}
+                exitStyle={{ x:0, y: -10, o: 0 }}
+                x={0}
+                y={0}
+                o={1}
+                animation={'bouncy'}
+                elevate
+            >
+                <Popover.Arrow bw={1} boc="$borderColor" />
+                <XStack space={'$3'}>
+                    <Label size={'$3'} htmlFor={'link'}>
+                        URL
+                    </Label>
+                    <Button size={'$3'} id="link">
+                        https://tactable.io
+                    </Button>
+                </XStack>
+            </Popover.Content>
+        </Popover>
     )
 }
